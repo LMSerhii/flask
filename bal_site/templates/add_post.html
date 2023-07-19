@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ super() }}
+{% for cat, msg in get_flashed_messages(True) %}
+<div class="container-sm">
+    <div class="alert {{ cat }}" role="alert" style="margin-top: 100px;">
+        {{ msg }}
+    </div>
+</div>
+{% endfor %}
+
+<div class="container-sm" style="margin-top: 50px;">
+    <form action="{{ url_for('add_post') }}" method="post"  class="row g-3">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Название статьи</label>
+            <input type="text" name="title" class="form-control" id="exampleFormControlInput1">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Текст статьи</label>
+            <textarea class="form-control" name="post" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+        <div class="mb-3 ">
+            <input type="submit" class="btn btn-primary" value="Добавить">
+        </div>
+    </form>
+
+</div>
+
+{% endblock content %}
